@@ -1,0 +1,3 @@
+# Frontend
+Wykonany przy pomocy frameworka JavaScriptowego "ReactJS". FrontEnd to wizualna aplikacja po stronie klienta, która umożliwia na łatwy sposób wyświetlania i manipulowania informacjami w systemie za pośrednictwem wysyłania zapytań GET/POST do backendu.
+W repozytorium znajdują się pliki tylko do kompilacji, aby uruchomić aplikacje frontendowa trzeba zmodyfikować plik src/GlobalVars.js, package.json, zainstalować biblioteki za pomocą npm i, wykonać build komendą npm run build, a następnie umieścić pliki na jakiejkolwiek usłudze serwera WWW, uruchamiając finalnie plik obrazy.sh, aby powiązały one dostępność do zdjęć awatarów i zdjęć tras znajdujące się w strukturze plików Backendu.
