@@ -1,0 +1,568 @@
+* {
+	margin: 0;
+	box-sizing: border-box;
+	font-family: "Montserrat", sans-serif;
+}
+.srodekekranu a { text-decoration: none; color: inherit; font-weight: bolder; color: dodgerblue; cursor: pointer; transition: letter-spacing 0.3s ease; }
+.srodekekranu a:hover { letter-spacing: 1px; }
+@keyframes odslonEkran {
+	0% {
+		height: 100vh;
+		background: rgba(0,0,0,1);
+	}
+	99%{
+		height: 100vh;
+		background: rgba(0,0,0,0);
+	}
+	100%{
+		height: 0;
+	}
+}
+.srodekekranu::after {
+	content: " ";
+	display: block;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 0;
+	animation: odslonEkran 0.5s ease;
+	z-index: 9999;
+}
+#root {
+	width: 100%;
+	min-height: 100vh;
+}
+.nieaktywnyFiltr:hover { filter: grayscale(); }
+.logofirmy { background-size: contain; background-position: center; position: fixed; z-index: 1; top: 0px; right: 0px; width: 100px; height: 100px; box-shadow: 0 0 30px 0 #444; background-repeat: no-repeat;}
+.logowanieBg, .tlo {
+	display: flex;
+	width: 100%;
+	height: 100vh;
+	background: url("https://rzak.eu/img/systemtlo-opt.png");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	align-items: center;
+	justify-content: center;
+	z-index: -1;
+}
+.logowanieBg:before { top: 0; left: 0; right: 0; bottom: 0; display: block; background: rgba(0,0,0,0.7); content: ""; z-index: 0; position: absolute; }
+.tlo {
+	position: fixed;
+}
+.logowanie {
+	display: flex;
+	width: 750px;
+	height: 400px;
+	background: #111;
+	box-shadow: 0 0 20px 1px #000;
+	z-index: 2;
+}
+.logowanieLewa {
+	width: 250px;
+	height: 100%;
+	display: flex;
+	padding: 40px;
+	background: #1c1c1c;
+}
+.logowanieLogo {
+	width: 100%;
+	background: url("https://rzak.eu/img/logoglowna.jpg");
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.logowaniePrawa {
+	display: flex;
+	flex-grow: 1;
+	height: 100%;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	color: #ccc;
+	text-shadow: 1px 1px 3px #111;
+	padding: 40px;
+}
+.logowaniePrawa h1 {
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+.logowaniePrawa h3{
+	letter-spacing: 1px;
+	font-weight: 400;
+	text-align: center;
+	font-size: 0.8rem;
+	width: 250px;
+	margin-top: 5px;
+	margin-bottom: 20px;
+}
+.logowaniePrawa a {
+	text-decoration: none;
+	color: white;
+	font-size: 0.7rem;
+	margin-top: 20px;
+	transition: color 0.4s ease;
+}
+.logowaniePrawa a:hover {
+	color: dodgerblue;
+}
+
+@keyframes pokazSmooth {
+	0% { opacity: 0; }
+	25% { transform: translateX(10px); }
+	50% { transform: translateX(-10px); }
+	75% { transform: translateX(0);}
+	100% { opacity: 1; }
+}
+@keyframes wejscieSmooth {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+.pokazSmooth {
+	animation: pokazSmooth 0.5s ease;
+}
+.wejscieSmooth {
+	animation: wejscieSmooth 0.5s ease;
+}
+.logowaniePrawa h5 { color: crimson; animation: pokazSmooth 0.3s;}
+.logowaniePrawa input {
+	padding: 15px 10px;
+	font-size: 1.1rem;
+	background: #333;
+	color: #ccc;
+	margin: 20px 0 5px;
+	border: 2px solid transparent;
+	outline: none;
+	transition: all 0.4s ease;
+	box-shadow: -2px 2px 10px 1px #111;
+}
+.logowaniePrawa input:focus {
+	border-color: dodgerblue;
+}
+.logowaniePrawa input[type="submit"] {
+	background: crimson;
+	text-shadow: 1px 1px 3px black;
+	color: white;
+	font-size: 0.85rem;
+	font-weight: bold;
+	letter-spacing: 1px;
+	padding: 12px 8px;
+	min-width: 200px;
+	cursor: pointer;
+	text-align: center;
+	text-transform: uppercase;
+}
+.logowaniePrawa input[type="submit"]:focus {
+	border-color: transparent;
+}
+.logowaniePrawa input[type="submit"]:enabled:hover {
+	letter-spacing: 3px;
+	background: rgb(255, 187, 0);
+	background: #000;
+}
+.logowaniePrawa input[type="submit"]:disabled {
+	cursor:default;
+	opacity: 0.3;
+}
+header { position: fixed; z-index: 10;
+	left: 0; top: 0;
+	width: 60px;
+	height: 100vh; background: #181818;
+	color: #bbb;
+	transition: all .8s;
+	border-right: 1px solid #333;
+	box-shadow: 0 0 10px 1px #161616;
+	
+}
+header:hover { width: 200px; }
+nav { width: 100%; height: 100%; flex-direction: column; display: flex; justify-content: space-between; overflow: hidden;}
+nav ul { padding: 0; width: 100%; overflow: hidden; }
+nav li { list-style-type: none;
+	width: 200px;
+	text-decoration: none;
+	overflow: hidden;
+	border-bottom: 1px solid #333;
+}
+nav li a, nav button { display: flex; align-items: center; 
+	padding: 15px 20px; width: 100%;
+	text-decoration: none; color: inherit; overflow: hidden;
+	font-weight: 500; font-size: 1rem;
+	transition: all .4s ease; letter-spacing: -1px;
+}
+nav button { width: 200px; overflow: hidden; background: transparent; outline: none; border: none; border-top: 1px solid #333;}
+nav li:first-child a { padding-top: 25px; }
+nav ul li a.active { color: #fff;}
+nav button:hover, nav li a:hover { background: #161616; color: #ffe000; box-shadow: inset 0 0 5px 1px #040404; cursor: pointer; }
+nav button svg, nav li svg { width: 60px; text-align: center; font-size: 1.6rem; margin-left: -20px; }
+nav li a:hover svg { color: #ffe000; }
+nav li a.active:hover svg { color: inherit; }
+.menu-awatar { width: 100%; height: 60px; background-size: cover !important; }
+@keyframes menuBlink {
+	0% { opacity: 0.2; }
+	33% { opacity: 1; }
+	66% { opacity: 0.2; }
+	100% { opacity: 1; }
+}
+.menu-ilosc {
+	position: absolute;
+    background: crimson;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    transform: translate(10px, 10px);
+	animation: menuBlink 0.5s;
+}
+.srodekekranu, .srodekekranu2 {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px 20px 20px 80px;
+    color: #b7b7b7;
+    background: rgba(0,0,0,0.4);
+}
+.glowna { width: 100%; max-width: 1250px; background: #111; box-shadow: 0 0 20px 5px #111; position: relative;}
+.glownaWiadomosc {
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+    border-bottom: 1px solid crimson;
+	background: #0e0e0e;
+}
+.glownaWiadomosc h3 {
+    text-align: center;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    color: #bdbd1a;
+}
+.glownaWiadomosc hr {
+    border-color: darkcyan;
+}
+.glownaWiadomosc span {
+    color: white;
+    text-align: justify;
+    text-align-last: center;
+    margin-top: 20px;
+    color: #c36c00;
+}
+.glownaDol { display: flex; background: #0e0e0e; border-top: 2px solid #181818; padding: 30px 0 50px; justify-content: space-around;}
+.statwlasna, .statfirmowa {
+	display: flex;
+	flex-direction: column;
+	min-width: 250px;
+	max-width: 520px;
+	width: 80%;
+    flex-grow: 1;
+}
+.statystyka:last-child { margin-left: 20px; }
+.statwlasna h2, .statfirmowa h2, .statwlasna div, .statfirmowa div { flex-grow: 1; padding: 15px; font-size: 1rem; }
+.statwlasna h2, .statfirmowa h2 {
+    border-bottom: 1px solid grey;
+}
+.statwlasna div, .statfirmowa div { display: inline-flex; justify-content: space-between; border-bottom: 1px solid red;}
+.statwlasna div:nth-child(2), .statfirmowa div:nth-child(2) { border-color: #9c27b0; }
+.statwlasna div:nth-child(3), .statfirmowa div:nth-child(3) { border-color: #2196f3; }
+.statwlasna div:nth-child(4), .statfirmowa div:nth-child(4) { border-color: #298800; }
+.glownaGora {
+	height: 320px;
+	padding: 20px 50px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.glownaAwatar {
+	background-color: #ccc;
+	background-size: cover;
+	background-position: center;
+	height: 210px;
+	width: 210px;
+	min-width: 210px;
+	box-shadow: 0 0 20px 5px #000;
+	margin-right: 30px;
+}
+.miniProfil {
+	display: flex;
+}
+.miniDane { display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1;}
+.miniDane div { display: flex; flex-direction: column; }
+.miniDane div:nth-child(1) span:nth-child(1) { letter-spacing: 1px; color: #eee; font-weight: bold; font-size: 1.7rem;}
+.miniDane div:nth-child(1) span:nth-child(2) { letter-spacing: 1px; color: greenyellow; font-weight: bold; font-size: 1.3rem;}
+.miniDane div:nth-child(2) { font-size: 1.1rem; letter-spacing: 1px; font-weight: 600;}
+.miniDane div:nth-child(3) { font-size: 0.9rem; line-height: 1.4;}
+.miniDane div:nth-child(3) div { display: flex; flex-direction: row;}
+.miniDane div:nth-child(3) div a { margin-right: 15px; }
+.top3 {
+	position: relative;
+	width: 450px;
+	height: 230px;
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	margin-top: 90px;
+	color: #ddd;
+}
+.top3 span, .top3 a { position: absolute; text-align: center; font-weight: 700; }
+.top3 .tytul { left: 0; right: 0; top: -70px; font-size: 1.2rem; letter-spacing: 2px;}
+.top3 .miejsce1 { left: 0; right: 0; top: -25px; font-weight: 500;}
+.top3 .miejsce2 { top: 20px; left: 30px; right: 290px; font-weight: 500;}
+.top3 .miejsce3 { top: 35px; right: 35px; left: 290px; font-weight: 500;}
+.profilKarta {
+	width: 267px;
+	height: 167px;
+	background-size:cover;
+	background-position: center;
+	transform: translateY(30px);
+	transition: transform 0.4s ease;
+	box-shadow: 0 0 20px 5px #111;
+}
+.profilKarta:hover {
+	transform: translateY(15px);
+	cursor: pointer;
+}
+.profilWysuwalne {
+	z-index: 1;
+	height: 60px;
+	display: flex;
+	border-radius: 20px 20px 0 0;
+	justify-content: space-evenly;
+	width: 100%; max-width: 1250px;
+	background:#181818;
+	box-shadow: 0 0 20px 5px rgba(17, 17, 17, 0.882);
+	border-bottom: 1px solid white;
+}
+.miniWykresik { display: flex; flex-grow: 1; flex-direction: column; margin-bottom: -15px; position: relative; }
+.miniWykresik::before { position: absolute; display: block; content: "Statystyka ostatnich tras"; left: 0; right: 0; text-align: center;}
+.ktoryWykresWybrany { margin-top: 20px; margin-bottom: -20px; text-align: center;}
+.ktoryWykresWybrany button { background: #eee; outline: none; border: none; padding: 8px; margin: 0 15px; cursor: pointer; transition: background, letter-spacing 0.4s ease;}
+.ktoryWykresWybrany button:hover { background: #aaa; letter-spacing: 1px;}
+.ktoryWykresWybrany button:disabled { background: #373; color: #ddd; cursor: not-allowed; letter-spacing: normal;}
+.odnosnikProfil { height: 40px; width: 40px; display: block; background-size: cover; background-position: center; }
+.rankingMiesiac { position: absolute; left: 0; bottom: 100%; padding: 8px; background: #181818; outline: none; border: none; color: orange; font-size: 1.1rem; color-scheme: dark;}
+table.rankingTable, table.ostatnieTrasy { width: 100%; border-collapse: collapse; }
+.rankingTable tr { border-left: 4px solid transparent; }
+.rankingTable tr th, .ostatnieTrasy tr th { border-bottom: 1px solid goldenrod; }
+.rankingTable tr th, .rankingTable tr td, .ostatnieTrasy tr th, .ostatnieTrasy tr td { padding: 10px 15px; text-align: left; vertical-align: middle; transition: all .4s ease;}
+.ostatnieTrasy tr th, .ostatnieTrasy tr td { padding: 10px; }
+.ostatnieTrasy tr td:first-child, .ostatnieTrasy tr th:first-child, .ostatnieTrasy tr th:nth-child(2) { text-align: center;}
+.rankingTable tr:nth-child(odd) td, .ostatnieTrasy tr:nth-child(odd) td { background: #121212; }
+.rankingTable tr:nth-child(even) td, .ostatnieTrasy tr:nth-child(even) td { background: #161616; }
+.rankingTable tr:hover td, .ostatnieTrasy tr:hover td { background: #1C1C1C; color: #ddd; }
+.rankingTable th { cursor: pointer; }
+.rankingTable img, .ostatnieTrasy img {
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 20px;
+	width: 45px;
+	height: 45px;
+}
+.ostatnieTrasy img { border-radius: 0; margin-right: -12px;}
+.ostatnieTrasy a:hover { letter-spacing: 0;}
+.ostatnieTrasy td img.flaga, .formularzDane .flaga { width: 20px; height: 14px; margin: 0 8px 2px 5px; }
+.ostatnieTrasy img.ktoOddal {
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 20px;
+	width: 45px;
+	height: 45px;
+}
+.formularzDane .flaga { margin: 0 5px -1px 0; }
+.ostatnieTrasy td b { font-weight: 500; color: #fff; font-size: 0.85rem; }
+.ostatnieTrasy td svg { margin: 0 6px -2px 11px; color: dodgerblue; }
+.ostatnieTrasy td img.flaga:first-child { margin-left: 0;}
+.rankingTable tr th:hover { letter-spacing: 1px; background: #0f0f0f; color: #eee; user-select: none; }
+tr.twojestaty { border-left: 2px solid #3f3;}
+tr th.wybranySort  { border-bottom: 1px solid dodgerblue; color: dodgerblue !important; letter-spacing: 1px; background: #0e0e0e; }
+tr th.rosnacySort  { border-bottom: 1px solid crimson; color: crimson !important; letter-spacing: 1px; background: #0e0e0e; }
+tr th.malejacySort { border-bottom: 1px solid #3d3; color: #3d3 !important; letter-spacing: 1px; background: #0e0e0e; }
+.komentarzeProfilHolder, .winietyProfilHolder { position: absolute; left: 0; right: 0; bottom: 0; top:0; background: #141414; padding: 10px; }
+.wysuwanieKomentarzy, .wysuwanieWiniet { position: absolute; top: 100%; left: 20px; padding: 10px 15px; background: #141414; color: #eee; transition: all 0.4s ease; box-shadow: 0 0 20px 4px #111;}
+.wysuwanieKomentarzy:hover, .wysuwanieWiniet:hover { cursor: pointer; background: #eee; color: #1c1c1c; }
+.wysuwanieKomentarzy svg, .wysuwanieWiniet svg { vertical-align: middle; margin-left: 5px;}
+.wysuwanieWiniet { left: 180px;}
+.komentarzeProfil, .winietyProfil { overflow-y: auto; height: calc(100% - 70px); background: #222; padding: 10px; margin-bottom: 10px;}
+.winietyProfil { height: 100%; margin-bottom: 0; display: flex; flex-direction: row; gap: 15px; flex-wrap: wrap; align-content: baseline; }
+.komentarzProfil, .winietaProfil { position: relative; display: flex; color: #fff; flex-grow: 1; padding: 10px; background: #1c1c1c; margin-bottom: 15px; flex-direction: column;}
+.winietaProfil { flex-direction: row; flex-grow: 1; width: fit-content; max-width: 320px; height: 80px; box-shadow: 0 0 4px 1px #131313; user-select: none; margin: 0;}
+.winietaProfil img { margin-right: 10px; width: 100px; height: 60px; }
+.winietaDane { display: flex; flex-grow: 1; flex-direction: column; align-items: center; justify-content: center; }
+.winietaDane p { margin-top: 5px; font-size: 0.8rem; }
+.komentarzProfil:last-child { margin-bottom: 5px; }
+.komentarzKto { margin-right: 10px;}
+.komentarzNaglowek { font-size: 0.85rem; color: gray; display: flex;}
+.komentarzTresc { font-size: 0.95rem; margin-top: 5px;}
+.napiszKomentarz { height: 60px; width: 100%; position: relative; }
+.napiszKomentarz textarea { width: 100%; height: 100%; padding: 10px 100px 10px 10px; font-size: 1rem; font-weight: bold; color: #ccc; background: rgba(255,255,255,0.06); border: 1px solid goldenrod; transition: border-color 0.4s ease; overflow-y: hidden; resize: none;}
+.napiszKomentarz textarea:focus { outline: none; border: 1px solid dodgerblue; }
+.napiszKomentarz input[type='submit'] { font-weight: bold; position: absolute; right: 0; height: 100%; vertical-align: middle; padding: 10px 20px; border: 1px solid goldenrod; background: #ddd; font-size: 1rem; transition: all 0.4s ease; }
+.napiszKomentarz input[type='submit']:hover { cursor: pointer; background: goldenrod; color: #eee; }
+a.usunKomentarz { color: gray; position: absolute; right: 20px; font-size: 0.8rem; }
+.komunikat { display: flex; z-index: 99999; position: fixed; align-self: center; padding: 30px; background: #0c0c0c; color: #fff; font-size: 1.2rem; font-weight: bold; flex-direction: column; box-shadow: 0 0 20px 3px #111; }
+.komunikat div { display: flex; justify-content: space-around; margin-top: 20px; }
+.komunikat div a { color: #2f2; }
+.komunikat div a:last-child { color: crimson; }
+.zabluruj { filter: blur(2px);}
+.overlay { position: absolute; left: 0; top: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.3); z-index: 12;}
+.edycjaProfilBtn { position: absolute; z-index: 20; top: 0; left: 0; padding: 10px; height: 40px; width: 40px; border-radius: 0 0 20px; cursor: pointer; transition: all 0.4s ease; color: #555; background: #111;}
+.edycjaProfilBtn:hover { color: #fff; background: #181818; border-radius: 0 0 15px;}
+.edycjaProfilu { display: flex; flex-direction: column; position: absolute; z-index: 3; overflow: hidden; left: 0; top: 0; bottom: 100%; right: 100%; background: #181818; transition: all 0.4s ease; }
+.edycjaProfiluWysun { right: 0; bottom: -60px; padding: 20px; padding-left: 50px; background: #0c0c0c; }
+.edycjaSekcjaAwatar { display: flex; margin-right: 20px; flex-direction: column; width: 230px; padding: 15px; border-radius: 15px; }
+.edycjaSekcjaAwatarWyswietlany { position: relative; border-radius: 10px; box-shadow: 0 0 20px 3px #000; width: 200px; height: 200px; background-color: white; background-position: center; background-size: cover;}
+.edycjaSekcjaAwatarInputNo, .edycjaSekcjaAwatarInputYes { margin-top: 15px; width: 100%; padding: 10px; visibility: hidden; position: relative; }
+.edycjaSekcjaAwatarInputNo::before, .edycjaSekcjaAwatarInputYes::before { border-radius: 10px; font-size: 0.9rem; text-shadow: 1px 1px 3px #000; cursor: pointer; position: absolute; left: 0; top: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: center; font-weight: bold; color: #fff; background: #181818; visibility: visible; transition: all .4s ease;}
+.edycjaSekcjaAwatarInputNo:hover::before, .edycjaSekcjaAwatarInputYes:hover::before { letter-spacing: 1px; }
+.edycjaSekcjaAwatarInputNo::before { content:"Nowe zdjęcie?"; background: goldenrod;}
+.edycjaSekcjaAwatarInputYes::before { content: "Wybrano zdjęcie..."; background: #066c06;}
+.awatarCofnij { position: absolute; right: 0; bottom: 0; width: 35px; height: 35px; cursor: pointer; padding: 10px; color: #eee; transition: color .4s ease; }
+.edycjaSekcjaAwatarWyswietlany:hover .awatarCofnij { color: goldenrod; }
+.edycjaSekcjaAwatarWyswietlany:hover .awatarCofnij:hover { color: crimson; }
+.edycjaWybor { display: flex; justify-content: end; margin-top: 20px;}
+.edycjaWybor button { padding: 10px; outline: none; border-color: transparent; cursor: pointer; margin: 0 15px; display: flex; align-items: center; transition: all .4s ease; }
+.edycjaWybor button:nth-child(1) { background:crimson; }
+.edycjaWybor button:nth-child(2) { background: orangered; }
+.edycjaWybor button:nth-child(3) { background: #066c06; }
+.edycjaWybor svg { font-size: 1.1rem; width: 30px; padding-right: 8px; border-right: 1px solid black; }
+.edycjaWybor button p { margin-left: 10px; transition: letter-spacing .4s ease; font-weight: bold;}
+.edycjaWybor button:hover p { letter-spacing: 1px; }
+.edycjaWybor button:hover { color: #eee; }
+.edycjaForm { padding: 10px 20px;
+    border-radius: 15px;
+    color: #eee;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px #000;
+    font-size: 1.1rem;
+    display: flex;
+    flex-direction: column;
+}
+.edycjaForm input { text-shadow: 1px 1px 3px #444; border: 2px solid transparent; padding: 10px; outline: none; margin-top: 10px; font-size: 0.9rem; width: fit-content; box-shadow: 0 0 20px 3px #000; border-radius: 5px; transition: all 0.4s ease;}
+.edycjaForm input:required:invalid { border-color: crimson; background: rgb(233, 136, 136); color: #fff; }
+.edycjaForm input:required:invalid::placeholder { color: #fff; }
+.polskiePrawkoTyl { z-index: 5; border: 2px solid #ff7d7d; background-position: center; background-repeat: no-repeat; width: 865px; height: 545px; border-radius: 30px; padding: 10px; position: relative; }
+.licencja { z-index: 4; position: fixed; display: flex; width: 100%; height: 100vh; padding-left: 60px; justify-content: center; align-items: center;}
+.licencjaTlo { position: fixed; cursor: pointer; left: 0; right: 0; top: 0; bottom: 0; background: rgba(0,0,0,0.77);}
+table.prawko-uprawnienia { text-shadow: 1px 1px 10px #222; border: hidden; border-collapse: collapse; position: absolute; left: 255px; top: 65px; width: calc(100% - 280px); margin: 0; }
+table.prawko-uprawnienia th, table.prawko-uprawnienia td {
+    padding: 7px;
+    text-align: left;
+    background: transparent;
+    color: black;
+	font-size: 0.95rem;
+	border: 1px solid black;
+}
+.katCE { position: absolute; left: 50px; top: 310px; color: #000; text-shadow: 1px 1px 10px #222; }
+.prawkoPLLogo { position: absolute; left: 60px; bottom: 30px; width: 120px; height: 120px; background-size: contain; background-repeat: no-repeat; background-position: center; }
+.przegladajTrasy { padding: 10px; position:relative; }
+.przegladajTrasy h4 { text-align: center; margin: 5px 0 10px;}
+a.wyborGry { color: #fff; position: absolute; left: 20px; top: 100%; background: #0c0c0c; padding: 20px; display: inline-block; font-size: 1rem;}
+a.wyborGry:last-child { left: 250px; }
+.formularzTrasy { position: relative; width: 1300px; height: calc(1300px * 9 / 16); background: #b7b7b7; background-position: center; background-size: cover; padding: 30px; box-shadow: inset 0 0 20px 1px #242424; z-index: 33;}
+.formularzTrasyScreen { flex-direction: column; position: fixed; padding: 20px 20px 20px 80px; left: 0; top: 0; right: 0; bottom: 0; z-index: 5; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center;}
+.formularzLinia { display: flex; flex-direction: row; flex-grow: 1; justify-content: space-between; margin-bottom: 30px; }
+.formularzDane { display: flex; flex-grow: 1; flex-direction: column; max-width: 300px; }
+.formularzDane h3 { letter-spacing: -1px; margin-bottom: 10px; text-shadow: 1px 1px 10px rgb(163, 163, 163); font-size: 1.1rem; font-weight: 400;}
+.formularzDane svg { font-size: 1.5rem; margin-right: 10px; }
+.formularzDane input, .formularzDane select, .formularzDane option, .formularzDane textarea { background: rgba(255,255,255,0.26); outline: none; border: 1px solid lightgray; padding: 15px; font-style: italic;}
+.formularzDane textarea { flex-grow: 1; margin-bottom:10px; }
+.listaPromow select{ padding: 12px;}
+.zdjeciaTrasy { display: flex; flex-wrap: wrap; gap: 20px; }
+.zdjecieTrasa { width: 115px; height: 70px; display: flex; border: 1px solid #000; background-color: #525252; background-size: cover; background-position: center; position: relative;}
+.zdjecieTrasaUsun {     position: absolute;
+    right: 3px;
+    top: 3px;
+    width: 20px;
+    margin: 0 !important;
+    height: 20px;
+    cursor: pointer;
+    color: #f7f7f76b;
+    transition: color .4s ease;
+}
+.zdjecieTrasaPodglad { position: absolute; left: 3px; top: 3px; margin: 0 !important; width: 18px; height: 18px; cursor: pointer; color: #f7f7f76b; transition: color .4s ease; }
+.podgladZdj { position: absolute; left: 0; right: 0; bottom: -40px; top: 0; background-color: #0c0c0c; cursor: zoom-out; background-size: contain; background-repeat: no-repeat; background-position: center; z-index: 99;}
+.zdjecieTrasa:hover .zdjecieTrasaUsun, .zdjecieTrasa:hover .zdjecieTrasaPodglad { color: #ffffffab; }
+.zdjecieTrasa:hover .zdjecieTrasaUsun:hover, .zdjecieTrasa:hover .zdjecieTrasaPodglad:hover { color:rgb(255, 187, 0); }
+.formularzTrasy .formularzLinia:last-child { gap: 20px; }
+.formularzLinia:last-child .formularzDane { max-width: unset; }
+div.listaPromow { max-width: 300px !important; }
+.inputZdjTrasyYes, .inputZdjTrasyNo { padding: 6px; width: 250px; visibility: hidden; position: relative; }
+.inputZdjTrasyNo::before, .inputZdjTrasyYes::before { margin-top: 10px; font-size: 0.75rem; text-shadow: 1px 1px 3px #000; cursor: pointer; position: absolute; left: 0; top: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: center; font-weight: bold; color: #fff; background: #181818; visibility: visible; transition: all .4s ease;}
+.inputZdjTrasyNo:hover::before, .inputZdjTrasyYes:hover::before { letter-spacing: 1px; }
+.inputZdjTrasyNo::before { content:"Nowe zdjęcie?"; background: #424242;}
+.inputZdjTrasyYes::before { content: "Wybrano zdjęcie..."; background: #2c950a;}
+.trasaOpcje { position: absolute; right: 0; top: 100%; color: #fff; display: flex;}
+.trasaOpcje a { padding: 10px; outline: none; background: darkgoldenrod; border-color: transparent; cursor: pointer; margin-left: 20px; display: flex; align-items: center; transition: all .4s ease; font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; text-shadow: 1px 1px 6px #000;}
+.trasaOpcje a:hover { letter-spacing: 2px; background: #1c1c1c !important;}
+.trasaOpcje a:first-child { background:crimson; }
+.trasaOpcje svg { font-size: 1.1rem; width: 30px; padding-right: 8px; border-right: 1px solid black; margin-right: 10px; }
+.informacjeTrasy { position: absolute; left: 0; bottom: 100%; text-shadow: 1px 1px 3px #222; font-size: 0.9rem; padding: 15px; background: #2c2c2c; color: #eee; display: flex; flex-direction: column; align-items: center;}
+.formularzDane a, .formularzDane span { font-size: 0.9rem; padding: 10px; font-weight: 300; font-style: italic; text-shadow: 1px 1px 5px #444; }
+.formularzDane a { font-size: 1rem; text-decoration: none; color: inherit; font-weight: 500; font-style: normal; letter-spacing: 1px;}
+.formularzDane a img { width: 40px; height: 40px; border-radius: 50%; vertical-align: middle; box-shadow: 0 0 10px 1px #444; margin-right: 5px; }
+.akcjaDyspozytor { border-top: 2px solid crimson; flex-direction: column; position: absolute; z-index: 90; bottom: -50px; left: 0; right: 0; background: #222; display: flex; align-items: center; justify-content: center; padding: 20px; color: #eee; }
+.akcjaDyspozytor textarea { resize: none; width: 350px; height: 100px; }
+.akcjaDyspozytor select, .akcjaDyspozytor option { margin-left: 15px; padding: 5px; }
+.akcjaDyspozytor a { padding: 10px; background: #eee; color: #222; margin: 0 15px; cursor: pointer; transition: all .4s ease; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; text-shadow: 1px 1px 6px #000; }
+.akcjaDyspozytor a:first-child { background: darkgoldenrod; }
+.akcjaDyspozytor a:last-child { background: #373; }
+.akcjaDyspozytor a:hover { background: #fff; color: #000; }
+.akcjaDyspozytor a svg { font-size: 1.1rem; width: 30px; padding-right: 8px; border-right: 1px solid black; margin-right: 4px; vertical-align: sub;}
+.akcjaDyspozytor option:first-child, .formularzDane option:first-child { visibility: hidden; display: none; }
+.akcjaDyspozytor input { padding: 5px; }
+.customDysp { position: absolute; left: 10px; top: 100%; margin-top: -10px; }
+.customDysp input { padding: 15px; border: none; width: 95px; outline: none; background: #111; color: #eee;  }
+.customDysp a { display: inline-flex;
+    float: right;
+    height: 100%;
+    padding: 15px;
+    background: #2c2c2c;
+    color: #eee; cursor: pointer; transition: all .4s ease; }
+.customDysp a:hover { color: dodgerblue; background: #ccc;}
+.dyspHistoria { position: absolute; z-index: 9; left: 0; top: 0; bottom: 0; right: 0; overflow-y: scroll; }
+.dyspHistoria .ostatnieTrasy tr th { background: #111; }
+.dyspHistoriaBtn { right: 10px; top: 100%; position: absolute; background: #111; color: #eee; padding: 15px; cursor: pointer; transition: all .4s ease; font-size: 0.95rem; }
+.dyspHistoriaBtn:hover { background: #ccc; color: #111; }
+.dyspHistoriaBtn svg { margin: 0px 5px -2px 0; }
+.uprTable tr:last-child td { padding: 10px 5px;}
+.uprTable input, .uprTable select { height: 100%; padding: 15px 8px; font-size: 0.95rem; border: 1px solid #2a2a2a; background: transparent; color: #eee; }
+.uprTable option { background: #1c1c1c; border: none; padding: 8px; }
+.uprTable option:first-child { display: none; visibility: hidden;}
+.wniosek { padding: 30px; }
+.wniosekGora { display: flex; flex-direction: row; gap: 20px; margin-top: 20px; }
+.przegladajUzytkownikow { max-height: 70vh; overflow-y: auto;}
+.administrowanieKonta { position: absolute; left: 0; right: 0; top: 0; bottom: 0; background: #111; display: flex; padding: 25px; justify-content: center; align-items: center; gap: 20px; }
+.wniosekGoraKol, .administrowanieKol { display: flex; flex-direction: column; gap: 10px; }
+.administrowanieKontaAwatar { width: 300px; height: 300px; background-size: cover; background-position: center; border: 1px solid #666; }
+.ustawieniaKol input, .ustawieniaKol select, .ustawieniaKol textarea, .wniosekGora input, .wniosekGora select, .wniosekGora textarea, .administrowanieKonta input, .administrowanieKonta select, .administrowanieKonta textarea { margin-top: 10px; width: 100%; font-weight: bold; background: rgba(255,255,255,0.75); padding: 8px;  outline: none; border: none; }
+.administrowanieKonta textarea { resize: none; height: 135px;}
+.wniosekGora textarea { resize: none; height: 105px; width: 450px; text-align: justify;}
+.administrowanieOpcje { position: absolute; bottom: 20px; }
+.ustawieniaKol button, .wniosekGora button, .potwierdzenieUsuwania button, .administrowanieOpcje button { padding: 10px; font-weight: bold; margin: 0 10px; letter-spacing: 1px; background: crimson; color: #ccc; border: none; text-shadow: 1px 1px 3px #111; box-shadow: 0 0 10px 0 #060606; cursor: pointer; transition: all .4s ease; }
+.wniosekGora button { background: #373; }
+.ustawieniaKol button { width: 100px; margin: 0;}
+.wniosekGora button:hover { letter-spacing: 2px; background: goldenrod; }
+.potwierdzenieUsuwania button:hover, .administrowanieOpcje button:hover { letter-spacing: 3px;}
+.administrowanieOpcje button:first-child { background: darkgoldenrod; }
+.potwierdzenieUsuwania button:first-child, .administrowanieOpcje button:last-child { background: #373; }
+.potwierdzenieUsuwania { position: absolute; left: 0; top: 0; width: 100%; height: 100%; padding: 30px; display: flex; gap: 30px; flex-direction: column; justify-content: center; align-items: center; background: #111;}
+.menadzerPodwyzkaBtn { font-size: 0.7rem; color: goldenrod; position: absolute; font-weight: bold; transform: translate(10px, 10px); cursor: pointer; transition: all .4s ease; }
+.menadzerPodwyzkaBtn:hover { color: #ddd; letter-spacing: 1px;}
+.historiaWnioskow { display: flex; flex-direction: column; align-items: center; background: #0c0c0c; padding: 10px; }
+.historiaWnioskow table { margin-top: 10px; background: #1e1e1e;}
+.historiaWnioskow table tr th, .historiaWnioskow table tr td { border: 1px solid #333;}
+.ustawieniaMain { display: flex; padding: 20px; gap: 20px; flex-direction: row; justify-content: space-evenly;}
+.ustawieniaKol { padding: 10px; display: flex; flex-direction: column; gap: 10px; }
+.ustawieniaKol button { background: orangered; }
+.ustawieniaKol button:hover { background: #298800; letter-spacing: 2px;}
+.ustawieniaKol textarea { flex-grow: 1; resize: none; margin-top: 0px;}
+.slupeczek { width: 1px; background: #444; height: 100%; display: block; content: " ";}
+/* scroll */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: rgba(255,255,255,0.1); box-shadow: 0 0 4px 0 #111; }
+::-webkit-scrollbar-track:hover { background: rgba(255,255,255,0.15); }
+::-webkit-scrollbar-thumb { background: dodgerblue; border-radius: 10px 0 0 10px; box-shadow: 0 0 4px 0 #333; }
